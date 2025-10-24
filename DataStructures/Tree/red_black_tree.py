@@ -50,9 +50,7 @@ def flip_node_color(node):
         node["color"] = rbn.RED
         
 def is_red(node):
-    if node is None:
-        return False
-    return node["color"] == rbn.RED
+    return rbn.is_red(node)
 
 def size_tree(root):
     if root is None:
