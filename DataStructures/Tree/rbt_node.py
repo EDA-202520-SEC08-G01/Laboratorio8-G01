@@ -1,8 +1,7 @@
 RED = 0
 BLACK = 1
 
-
-def new_rbt_node(key, value, color=RED):
+def new_node(key, value):
     """
     Crea un nuevo nodo para un árbol rojo-negro  y lo retorna.
     color:0 - rojo  color:1 - negro
