@@ -221,14 +221,18 @@ def keys_range(root, key_initial, key_final, key):
         current_key = rbn.get_key(root)
         if key_initial < current_key:
             left_keys = keys_range(root["left"], key_initial, key_final, key)
-            for k in sll.iterate(left_keys):
-                sll.add_last(retorno, k)
+            node = left_keys["first"]
+            while node is not None:
+                sll.add_last(retorno, node["info"])
+                node = node["next"]
         if key_initial <= current_key <= key_final:
             sll.add_last(retorno, current_key)
         if current_key < key_final:
             right_keys = keys_range(root["right"], key_initial, key_final, key)
-            for k in sll.iterate(right_keys):
-                sll.add_last(retorno, k)
+            node = right_keys["first"]
+            while node is not None:
+                sll.add_last(retorno, node["info"])
+                node = node["next"]
     return retorno
 
 def keys(my_bst, key_initial, key_final):
@@ -308,3 +312,16 @@ def select(my_rbt, rank):
 
 # aparentemente falto left key y right key, pero es usar para left key min node y right key max node (creo) y pues ponerlas aca xd
 # lo dejo asi pq me voy a dormir muchachoides
+def values_range(root, key_initial, key_final, value_list):
+    if root is not None:
+        current_key = rbn.get_key(root)
+        if key_initial < current_key:
+            values_range(root["left"], key_initial, key_final, value_list)
+        if key_initial <= current_key <= key_final:
+            al.add_last(value_list, rbn.get_value(root))
+        if current_key < key_final:
+            values_range(root["right"], key_initial, key_final, value_list)
+    return value_list
+
+def values(my_rbt, key_initial, key_final):
+    return values_range(my_rbt["root"], key_initial, key_final, value_list=al.new_list())
