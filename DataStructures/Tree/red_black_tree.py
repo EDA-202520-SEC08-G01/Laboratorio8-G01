@@ -52,7 +52,9 @@ def flip_node_color(node):
         node["color"] = rbn.RED
         
 def is_red(node):
-    return rbn.is_red(node)
+    if node is None:
+        return False
+    return node["color"] == rbn.RED
 
 def size_tree(root):
     if root is None:
@@ -86,10 +88,6 @@ def put(my_rbt, key, value):
     my_rbt["root"]["color"] = rbn.BLACK
     
     return my_rbt
-
-def put(my_bst, key, value):
-    my_bst["root"] = insert_node(my_bst["root"], key, value)
-    return my_bst
 
 def get(my_rbt, key):
     return get_node(my_rbt["root"], key)

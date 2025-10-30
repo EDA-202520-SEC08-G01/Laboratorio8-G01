@@ -1,7 +1,8 @@
 RED = 0
 BLACK = 1
 
-def new_node(key, value):
+
+def new_node(key, value, color=RED):
     """
     Crea un nuevo nodo para un árbol rojo-negro  y lo retorna.
     color:0 - rojo  color:1 - negro
@@ -110,3 +111,4 @@ def change_color(my_node, color):
         Exception
     """
     my_node["color"] = color
+
