@@ -27,6 +27,9 @@
 import os
 import csv
 import datetime
+import DataStructures.List.array_list as al
+import DataStructures.Tree.red_black_tree as rbt
+import DataStructures.Map.map_linear_probing as lp
 
 # TODO Realice la importación del Árbol Rojo Negro
 # TODO Realice la importación de ArrayList (al) o SingleLinked (sl) como estructura de datos auxiliar para sus requerimientos
@@ -37,23 +40,24 @@ data_dir = os.path.dirname(os.path.realpath('__file__')) + '/Data/'
 
 
 def new_logic():
-    """ Inicializa el analizador
+     """ Inicializa el analizador
 
-    Crea una lista vacia para guardar todos los crimenes
-    Se crean indices (Maps) por los siguientes criterios:
-    -Fechas
+     Crea una lista vacia para guardar todos los crimenes
+      Se crean indices (Maps) por los siguientes criterios:
+      -Fechas
 
-    Retorna el analizador inicializado.
-    """
-    analyzer = {"crimes": None,
-                "dateIndex": None,
-                "areaIndex": None,
-                }
+     Retorna el analizador inicializado.
+     """
+     analyzer = {"crimes": None,
+                 "dateIndex": None,
+                 "areaIndex": None,
+                 }
 
-    analyzer["crimes"] = al.new_list()
-    analyzer["dateIndex"] = rbt.new_map()
-    # TODO Crear el índice ordenado por áreas reportadas
-    return analyzer
+     analyzer["crimes"] = al.new_list()
+     analyzer["dateIndex"] = rbt.new_map()
+      # TODO Crear el índice ordenado por áreas reportadas (dejo el todo por si la cago xx2)
+     analyzer["areaIndex"] = rbt.new_map()
+     return analyzer
 
 # Funciones para realizar la carga
 
@@ -90,7 +94,9 @@ def update_area_index(map, crime):
     si el area es nueva, se crea una entrada para el indice y se adiciona
     y si el area son ["", " ", None] se utiliza el valor por defecto 9999
     """
-    # TODO Implementar actualizacion del indice por areas reportadas
+    if crime['AREA_ID'] == ["", " ", None]:
+        crime["VALUE"] = 9999
+    lp.put(map, crime)
     return map
 
 
@@ -203,8 +209,10 @@ def index_height_areas(analyzer):
     """
     Altura del arbol por areas
     """
-    # TODO Retornar la altura del árbol por areas
-    pass
+
+    return rbt.height_tree(analyzer["areaIndex"])
+    # TODO Retornar la altura del árbol por areas (dejo el todo por si la cago)
+
 
 
 def index_size_areas(analyzer):
@@ -212,7 +220,7 @@ def index_size_areas(analyzer):
     Numero de elementos en el indice por areas
     """
     # TODO Retornar el numero de elementos en el árbol por areas
-    pass
+    return rbt.size_tree(analyzer["areaIndex"])    
 
 
 def min_key_areas(analyzer):
@@ -220,22 +228,24 @@ def min_key_areas(analyzer):
     Llave mas pequena por areas
     """
     # TODO Retornar la llave más pequeña del árbol por áreas
-    pass
-
+    return rbt.get_min_node(analyzer["areaIndex"])
 
 def max_key_areas(analyzer):
     """
     Llave mas grande por areas
     """
     # TODO Retornar la llave más grande del árbol por áreas
-    pass
+    return rbt.get_max_node(analyzer["areaIndex"])
 
 def get_crimes_by_range_area(analyzer, initialArea, finalArea):
     """
     Retorna el numero de crimenes en un rango de areas
     """
     # TODO Completar la consulta de crimenes por rango de areas
+    lst = rbt.values(analyzer["areaIndex"], initialArea, finalArea)
     totalcrimes = 0
+    for i in lst["elements"]:
+        totalcrimes += i
     return totalcrimes
 
 def get_crimes_by_range(analyzer, initialDate, finalDate):

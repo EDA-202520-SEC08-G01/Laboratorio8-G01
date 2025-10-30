@@ -1,6 +1,7 @@
 def new_list():
     
     new_list = {
+        "first": None,
         "elements": [],
         "size": 0,
     }
