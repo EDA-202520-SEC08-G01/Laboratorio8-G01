@@ -23,6 +23,32 @@ def new_rbt_node(key, value, color=RED):
         "size": 1,
         "left": None,
         "right": None,
+        "type": "BST",
+    }
+
+    return node
+
+def new_rbt_node(key, value, color=RED):
+    """
+    Crea un nuevo nodo para un árbol rojo-negro  y lo retorna.
+    color:0 - rojo  color:1 - negro
+    Args:
+        value: El valor asociado a la llave
+        key: la llave asociada a la pareja
+        size: El tamaño del subarbol que cuelga de este nodo
+        color: El color inicial del nodo
+
+    Returns:
+        Un nodo con la pareja <llave, valor>
+    Raises:
+        Exception
+    """
+    node = {
+        "key": key,
+        "value": value,
+        "size": 1,
+        "left": None,
+        "right": None,
         "color": color,
         "type": "RBT",
     }
