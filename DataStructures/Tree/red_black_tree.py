@@ -309,3 +309,6 @@ def select_key(root, rank):
     
 def select(my_rbt, rank):
     return select_key(my_rbt["root"], rank)
+
+# aparentemente falto left key y right key, pero es usar para left key min node y right key max node (creo) y pues ponerlas aca xd
+# lo dejo asi pq me voy a dormir muchachoides
