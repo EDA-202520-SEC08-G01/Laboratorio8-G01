@@ -325,3 +325,11 @@ def values_range(root, key_initial, key_final, value_list):
 
 def values(my_rbt, key_initial, key_final):
     return values_range(my_rbt["root"], key_initial, key_final, value_list=al.new_list())
+
+def left_key(my_rbt):
+    min_key = get_min_node(my_rbt["root"])
+    return rbn.get_key(min_key)
+
+def right_key(my_rbt):
+    max_key = get_max_node(my_rbt["root"])
+    return rbn.get_key(max_key)

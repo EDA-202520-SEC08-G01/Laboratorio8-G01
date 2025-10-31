@@ -83,6 +83,7 @@ def add_crime(analyzer, crime):
     """
     al.add_last(analyzer['crimes'], crime)
     update_date_index(analyzer['dateIndex'], crime)
+    update_area_index(analyzer['areaIndex'], crime)
     # TODO Actualizar el indice por areas reportadas
 
     return analyzer
