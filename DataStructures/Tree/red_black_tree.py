@@ -87,10 +87,6 @@ def put(my_rbt, key, value):
     
     return my_rbt
 
-def put(my_bst, key, value):
-    my_bst["root"] = insert_node(my_bst["root"], key, value)
-    return my_bst
-
 def get(my_rbt, key):
     return get_node(my_rbt["root"], key)
 
